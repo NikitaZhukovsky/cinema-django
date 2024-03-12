@@ -70,9 +70,22 @@ class Session(models.Model):
 
     )
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
-    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    status = models.CharField(choices=STATUSES, max_length=50, default='Available')
-    isbn = models.CharField(max_length=13)
+    status = models.CharField(choices=STATUSES, max_length=50, default='In stock')
+    showing = models.DateField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.film.title} {self.isbn}"
+        return f"{self.film.title} {self.showing}"
+
+
+class Tickets(models.Model):
+    ticket_film = models.ForeignKey(Film, on_delete=models.CASCADE)
+    row = models.IntegerField(null=False)
+    place = models.IntegerField(null=False)
+    ticket_number = models.CharField(max_length=10)
+    film_date = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='tickets_date')
+
+    class Meta:
+        verbose_name_plural = 'Tikets'
+
+    def __str__(self):
+        return f"{self.ticket_film.title} {self.row} {self.place} {self.film_date.showing} {self.ticket_number}"

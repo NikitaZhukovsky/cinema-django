@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalog.models import Actor, Genre, Producer, Film, Session, Country
+from catalog.models import Actor, Genre, Producer, Film, Session, Country, Tickets
 
 
 class FilmInLine(admin.TabularInline):
@@ -29,10 +29,19 @@ class FilmAdmin(admin.ModelAdmin):
 
 
 class SessionAdmin(admin.ModelAdmin):
-    list_display = ['film', 'borrower', 'isbn', 'status']
+    list_display = ['film', 'status', 'showing']
     fieldsets = (
         ('Group 1', {
-            'fields': ('film', 'isbn', 'status')
+            'fields': ('film', 'status', 'showing')
+        }),
+    )
+
+
+class TicketAdmin(admin.ModelAdmin):
+    list_display = ['ticket_film', 'row', 'place', 'ticket_number', 'film_date']
+    fieldsets = (
+        ('Group 1', {
+            'fields': ('ticket_film', 'row', 'place', 'ticket_number', 'film_date')
         }),
     )
 
@@ -43,3 +52,4 @@ admin.site.register(Film, FilmAdmin)
 admin.site.register(Actor, ActorAdmin)
 admin.site.register(Producer, ProducerAdmin)
 admin.site.register(Session, SessionAdmin)
+admin.site.register(Tickets, TicketAdmin)
