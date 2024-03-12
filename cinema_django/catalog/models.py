@@ -71,7 +71,7 @@ class Session(models.Model):
     )
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
     status = models.CharField(choices=STATUSES, max_length=50, default='In stock')
-    showing = models.DateField(null=True, blank=True)
+    showing = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.film.title} {self.showing}"
@@ -85,7 +85,7 @@ class Tickets(models.Model):
     film_date = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='tickets_date')
 
     class Meta:
-        verbose_name_plural = 'Tikets'
+        verbose_name_plural = 'Tickets'
 
     def __str__(self):
         return f"{self.ticket_film.title} {self.row} {self.place} {self.film_date.showing} {self.ticket_number}"
