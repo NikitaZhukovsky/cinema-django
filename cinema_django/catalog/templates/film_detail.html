@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Film</h1>
+    <h2>Title: {{film.title }}</h2>
+    <h2>Description: {{film.description }}</h2>
+    <h2>Producer: {{ film.producer.first_name}} {{book.producer.last_name}}</h2>
+    <h2>Actors: {{ film.actor.first_name}} {{book.actor.last_name}} - {{book.actor.pseudonym }}</h2>
+    <h2>Genre: </h2>
+    {% for genre in film.genre.all %}
+        <h2> {{ genre.name }} {% if not forloop.last %}, {% endif %}</h2>
+
+    {% endfor %}
+
+
+{% endblock %}
