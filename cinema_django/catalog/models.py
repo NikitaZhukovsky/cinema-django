@@ -27,7 +27,7 @@ class Actor(models.Model):
     date_of_birth = models.DateField()
     date_of_death = models.DateField()
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='cinema_django/images/')
+    photo = models.ImageField(upload_to='actor/images/')
 
     def __str__(self):
         return (f"{self.first_name}"
@@ -41,7 +41,7 @@ class Producer(models.Model):
     date_of_birth = models.DateField()
     date_of_death = models.DateField()
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='cinema_django/images/')
+    photo = models.ImageField(upload_to='producer/images/')
 
     def __str__(self):
         return (f"{self.first_name}"
@@ -55,7 +55,7 @@ class Film(models.Model):
     actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
     genre = models.ManyToManyField(Genre)
     rating = models.FloatField(null=False)
-    photo = models.ImageField(upload_to='cinema_django/images/')
+    photo = models.ImageField(upload_to='film/images/')
 
     def display_genre(self):
         return ', '.join([genre.name for genre in self.genre.all()])
