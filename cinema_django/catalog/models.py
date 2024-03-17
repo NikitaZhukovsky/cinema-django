@@ -80,16 +80,30 @@ class Session(models.Model):
     def __str__(self):
         return f"{self.film.title} {self.showing}"
 
+    def get_absolute_url(self):
+        return reverse('film_session-detail', args=[self.pk])
+
 
 class Tickets(models.Model):
+    STATUSES = (
+        ('Available', 'Available'),
+        ('Sold', 'Sold'),
+
+    )
     ticket_film = models.ForeignKey(Film, on_delete=models.CASCADE)
+    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     row = models.IntegerField(null=False)
     place = models.IntegerField(null=False)
     ticket_number = models.CharField(max_length=10)
     film_date = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='tickets_date')
+    status = models.CharField(choices=STATUSES, max_length=50, default='Available')
 
     class Meta:
         verbose_name_plural = 'Tickets'
 
     def __str__(self):
         return f"{self.ticket_film.title} {self.row} {self.place} {self.film_date.showing} {self.ticket_number}"
+
+    def get_absolute_url(self):
+        return reverse('film_tickets-detail', args=[self.pk])
+

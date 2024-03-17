@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Tickets Owned by {{ user.username }}</h1>
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
+
+  {% if tickets %}
+    <ul>
+      {% for ticket in tickets %}
+            <li>Film: {{ ticket.ticket_film }}</li>
+            <li>Row: {{ ticket.row }}</li>
+            <li>Place: {{ ticket.place }}</li>
+            <li>Ticket Number:{{ ticket.ticket_number }}</li>
+            <li>Film Date: {{ ticket.film_date }}</li>
+        <br>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tickets owned.</p>
+  {% endif %}
+{% endblock %}

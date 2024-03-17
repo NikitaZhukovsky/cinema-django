@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Sessions</h1>
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
+    <h2>Film: {{ session.film.title}}</h2>
+    <h2>Status: {{ session.status }}</h2>
+    <h2>Showing: <a href="{% url 'display_tickets' session.film.id %}">{{ session.showing }}</a></h2>
+
+
+{% endblock %}

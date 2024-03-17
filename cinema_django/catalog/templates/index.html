@@ -2,11 +2,15 @@
 
 {% block content %}
     <h1>Cinema</h1>
-
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
     <ul>
-        <li>Films: {{ num_films }}</li>
-        <li>Actors: {{ num_actors }}</li>
-        <li>Sessions: {{ num_session }}</li>
+        <li><h2>Films: {{ num_films }}</h2></li>
+        <li><h2>Actors: {{ num_actors }}</h2></li>
+        <li><h2>Sessions: {{ num_session }}</h2></li>
 
     </ul>
 

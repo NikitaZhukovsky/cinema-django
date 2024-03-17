@@ -2,12 +2,14 @@
 
 {% block content %}
   <h1>Films List:</h1>
-
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
   {% for film in films_list %}
     <h3><a href="{{ film.get_absolute_url }}">{{ film }}</a></h3>
 
   {% endfor %}
-
-
 
 {% endblock %}

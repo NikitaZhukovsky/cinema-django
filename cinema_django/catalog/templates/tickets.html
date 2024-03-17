@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Available Tickets</h1>
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
+{% for ticket in available_tickets %}
+{% if ticket.status == 'Available' %}
+            <li>Film: {{ ticket.ticket_film }}</li>
+            <li>Row: {{ ticket.row }}</li>
+            <li>Place: {{ ticket.place }}</li>
+            <li>Ticket Number:{{ ticket.ticket_number }}</li>
+            <li>Film Date: {{ ticket.film_date }}</li>
+                <form action="{% url 'reserve_ticket' ticket.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Reserve">
+                </form>
+        <br>
+    {% endif %}
+        {% endfor %}
+
+{% endblock %}

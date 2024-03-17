@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Ticket</h1>
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
+    <h2>Film: {{ticket.ticket_film.title }}</h2>
+    <h2>Row: {{ ticket.row }} </h2>
+    <h2>Place: {{ ticket.place }}</h2>
+    <h2>Ticket Number:{{ ticket.ticket_number }}</h2>
+    <h2>Film Date: {{ ticket.film_date }}</h2>
+    <h2>Borrower: {{ ticket.borrower }} </h2>
+
+
+{% endblock %}

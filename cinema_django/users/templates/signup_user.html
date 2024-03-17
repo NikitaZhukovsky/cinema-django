@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<title>Sign Up</title>
+<style>
+    body {
+        background-color: white;
+    }
+    .form-wrapper {
+        border: 2px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        opacity: 0.6;
+    }
+    .registration-title {
+        font-weight: bold;
+    }
+
+
+</style>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h2 class="text-center registration-title">Sign Up</h2>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 form-wrapper">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
+                <small id="usernameHelp" class="form-text text-muted">Your username must be unique. We will inform you if someone has already used it.</small>
+            </div>
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <input type="password" name="password1" class="form-control" id="password1">
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" name="password2" class="form-control" id="password2">
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-5 text-center">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div class="text-center">
+            Already have an account? <a href="{% url 'login_user' %}">Login to your account</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -2,6 +2,11 @@
 
 {% block content %}
     <h1>Film</h1>
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
     <h2>Title: {{film.title }}</h2>
     <h2>Description: {{film.description }}</h2>
     <h2>Producer: {{ film.producer.first_name}} {{book.producer.last_name}}</h2>
@@ -9,6 +14,17 @@
     <h2>Genre: </h2>
     {% for genre in film.genre.all %}
         <h2> {{ genre.name }} {% if not forloop.last %}, {% endif %}</h2>
+
+    <h1 class="card-text">Sessions: </h1>
+    {% for film_session in film.session_set.all %}
+    {% if film_session.status == 'In stock' %}
+        <h4 class="card-text">
+            <a href="{{ film_session.get_absolute_url }}">
+                {{ film_session.showing }}
+            </a>
+        </h4>
+    {% endif %}
+{% endfor %}
 
     {% endfor %}
 
