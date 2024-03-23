@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from catalog.models import Film, Session, Tickets, Genre, Actor
+from catalog.models import Film, Session, Ticket, Genre, Actor
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 
@@ -33,14 +33,14 @@ class FilmSessionDetail(DetailView):
 
 
 def display_tickets(request, film_id):
-    available_tickets = Tickets.objects.filter(ticket_film_id=film_id)
+    available_tickets = Ticket.objects.filter(ticket_film_id=film_id)
     return render(request, 'tickets.html', {'available_tickets': available_tickets})
 
 
 @login_required
 def owned_tickets(request):
     user = request.user
-    tickets = Tickets.objects.filter(borrower=user)
+    tickets = Ticket.objects.filter(borrower=user)
     context = {
         'tickets': tickets
     }
@@ -50,7 +50,7 @@ def owned_tickets(request):
 
 @login_required
 def reserve_ticket(request, ticket_id):
-    ticket = get_object_or_404(Tickets, id=ticket_id)
+    ticket = get_object_or_404(Ticket, id=ticket_id)
     ticket.status = 'Sold'
     ticket.borrower = request.user
     ticket.save()

@@ -54,7 +54,7 @@ class Film(models.Model):
     producer = models.ForeignKey(Producer, on_delete=models.CASCADE)
     actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
     genre = models.ManyToManyField(Genre)
-    rating = models.FloatField(null=False)
+    rating = models.DecimalField(max_digits=2, decimal_places=1, null=False)
     photo = models.ImageField(upload_to='film/images/')
 
     def display_genre(self):
@@ -84,7 +84,7 @@ class Session(models.Model):
         return reverse('film_session-detail', args=[self.pk])
 
 
-class Tickets(models.Model):
+class Ticket(models.Model):
     STATUSES = (
         ('Available', 'Available'),
         ('Sold', 'Sold'),

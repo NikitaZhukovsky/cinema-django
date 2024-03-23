@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalog.models import Actor, Genre, Producer, Film, Session, Country, Tickets
+from catalog.models import Actor, Genre, Producer, Film, Session, Country, Ticket
 
 
 class FilmInLine(admin.TabularInline):
@@ -52,4 +52,4 @@ admin.site.register(Film, FilmAdmin)
 admin.site.register(Actor, ActorAdmin)
 admin.site.register(Producer, ProducerAdmin)
 admin.site.register(Session, SessionAdmin)
-admin.site.register(Tickets, TicketAdmin)
+admin.site.register(Ticket, TicketAdmin)
