@@ -95,7 +95,6 @@ class Ticket(models.Model):
     borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     row = models.IntegerField(null=False)
     place = models.IntegerField(null=False)
-    ticket_number = models.CharField(max_length=10)
     film_date = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='tickets_date')
     status = models.CharField(choices=STATUSES, max_length=50, default='Available')
 
@@ -103,7 +102,7 @@ class Ticket(models.Model):
         verbose_name_plural = 'Tickets'
 
     def __str__(self):
-        return f"{self.ticket_film.title} {self.row} {self.place} {self.film_date.showing} {self.ticket_number}"
+        return f"{self.ticket_film.title} {self.row} {self.place} {self.film_date.showing} {self.id} {self.status}"
 
     def get_absolute_url(self):
         return reverse('film_tickets-detail', args=[self.pk])

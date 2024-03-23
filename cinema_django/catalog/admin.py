@@ -38,10 +38,10 @@ class SessionAdmin(admin.ModelAdmin):
 
 
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ['ticket_film', 'row', 'place', 'ticket_number', 'film_date']
+    list_display = ['ticket_film', 'row', 'place', 'film_date', 'status']
     fieldsets = (
         ('Group 1', {
-            'fields': ('ticket_film', 'row', 'place', 'ticket_number', 'film_date')
+            'fields': ('ticket_film', 'row', 'place', 'film_date', 'status')
         }),
     )
 

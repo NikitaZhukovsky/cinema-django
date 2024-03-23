@@ -12,7 +12,7 @@
             <li>Film: {{ ticket.ticket_film }}</li>
             <li>Row: {{ ticket.row }}</li>
             <li>Place: {{ ticket.place }}</li>
-            <li>Ticket Number:{{ ticket.ticket_number }}</li>
+            <li>Ticket Number:{{ ticket.id }}</li>
             <li>Film Date: {{ ticket.film_date }}</li>
                 <form action="{% url 'reserve_ticket' ticket.id %}" method="POST">
                     {% csrf_token %}
