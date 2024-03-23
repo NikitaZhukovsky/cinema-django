@@ -20,13 +20,19 @@ class Country(models.Model):
         return self.name
 
 
-class Actor(models.Model):
+class Person(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100, null=True, blank=True)
-    pseudonym = models.CharField(max_length=100, null=True, blank=True)
     date_of_birth = models.DateField()
     date_of_death = models.DateField()
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
+
+
+class Actor(Person):
+    pseudonym = models.CharField(max_length=100, null=True, blank=True)
     photo = models.ImageField(upload_to='actor/images/')
 
     def __str__(self):
@@ -35,12 +41,7 @@ class Actor(models.Model):
                 f"{self.pseudonym if self.pseudonym else ''}")
 
 
-class Producer(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100, null=True, blank=True)
-    date_of_birth = models.DateField()
-    date_of_death = models.DateField()
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+class Producer(Person):
     photo = models.ImageField(upload_to='producer/images/')
 
     def __str__(self):
